@@ -1,0 +1,35 @@
+version: '3.8'
+
+services: 
+  app:
+    build: .
+    container_name: exercise_tracker_fcc
+    depends_on:
+      - mongo
+    command: bundle exec shotgun --host=0.0.0.0 --port=3000 config.ru
+    tty: true
+    stdin_open: true
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/appuser/code
+  mongo:
+    container_name: exercise_tracker_fcc_db
+    restart: always
+    image: mongo
+    ports:
+      - 27017
+    volumes: 
+      - mongo_local:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_DATABASE: root-db
+
+volumes:
+  mongo_local:
+
+networks:
+  exercise_tracker_fcc_net:
+    driver: bridge
+    name: exercise_tracker_fcc_net
