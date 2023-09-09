@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem 'dotenv'
+gem 'mongoid'
 gem 'puma'
 gem 'rack', '~> 2.2'
 gem 'shotgun3'

@@ -99,4 +99,12 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  Mongoid.load!('./config/mongoid.yml', Sinatra::Base.environment)
+  config.before do
+    Mongoid.default_client
+           .collections
+           .reject { |c| c.name =~ /^system/ }
+           .each(&:drop)
+  end
 end

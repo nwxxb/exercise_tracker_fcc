@@ -1,0 +1,20 @@
+# development:
+#   clients:
+#     default:
+#       database: exercise_tracker_db_test
+#       hosts: localhost:27017
+#       options:
+#         server_selection_timeout: 1
+test:
+  clients:
+    default:
+      database: exercise_tracker_db_test
+      hosts: 
+        - mongo:27017
+        # uri: mongodb://mongo:27017
+      options:
+        server_selection_timeout: 1
+        user: root
+        password: password
+        auth_source: admin
+        auth_mech: :scram
