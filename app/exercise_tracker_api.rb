@@ -1,9 +1,15 @@
+class User
+  include Mongoid::Document
+
+  field :username, type: String
+end
+
 class ExerciseTrackerApi < Sinatra::Base
   get '/' do
     redirect '/index.html'
   end
 
-  get '/hello' do
+  get '/api/hello' do
     content_type 'text/plain'
     
     'mantap mancing'
@@ -12,12 +18,13 @@ class ExerciseTrackerApi < Sinatra::Base
   post '/api/users' do
     content_type 'application/json'
 
-    return { _id: '1234', username: 'John Doe' }.to_json
+    user = User.create!(username: params['username'])
+    return user.to_json
   end
 
   get '/api/users' do
     content_type 'application/json'
 
-    return [{ _id: '1234', username: 'John Doe' }].to_json
+    User.all.to_json
   end
 end
