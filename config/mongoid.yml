@@ -1,20 +1,24 @@
-# development:
-#   clients:
-#     default:
-#       database: exercise_tracker_db_test
-#       hosts: localhost:27017
-#       options:
-#         server_selection_timeout: 1
+development:
+  clients:
+    default:
+      database: exercise_tracker_db_dev
+      hosts:
+        - mongo:27017
+      options:
+        server_selection_timeout: 1
+        user: <%= ENV.fetch('MONGO_LOCAL_USER') %>
+        password: <%= ENV.fetch('MONGO_LOCAL_PASSWORD') %>
+        auth_source: admin
+        auth_mech: :scram
 test:
   clients:
     default:
       database: exercise_tracker_db_test
       hosts: 
         - mongo:27017
-        # uri: mongodb://mongo:27017
       options:
         server_selection_timeout: 1
-        user: root
-        password: password
+        user: <%= ENV.fetch('MONGO_LOCAL_USER') %>
+        password: <%= ENV.fetch('MONGO_LOCAL_PASSWORD') %>
         auth_source: admin
         auth_mech: :scram
