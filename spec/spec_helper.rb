@@ -19,6 +19,7 @@ require './config/environment'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include Mongoid::Matchers, type: :model
   # config.include CustomHelpers
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

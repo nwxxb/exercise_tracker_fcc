@@ -18,6 +18,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'mongoid-rspec'
   gem 'rack-test', '~> 2.1'
   gem 'rspec'
 end
